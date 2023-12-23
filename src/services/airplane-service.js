@@ -1,6 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
 const { AirplaneRepository } = require("../repositories");
 const AppError = require("../utils/errors/app-error");
+const { response } = require("express");
 
 // class AirplaneService {
 //   constructor() {}
@@ -53,8 +54,38 @@ async function getAirplane(id) {
   }
 }
 
+async function destroyAirplane(id) {
+  try {
+    const response = await airplaneRepository.destroy(id);
+    return response;
+  } catch (error) {
+    if ((error.StatusCode = StatusCodes.NOT_FOUND)) {
+      throw new AppError(
+        "The Airplane you requested is not found",
+        error.StatusCode
+      );
+    }
+  }
+}
+
+async function updateAirplane(id, data) {
+  try {
+    const airplane = await airplaneRepository.update(id, data);
+    return airplane;
+  } catch (error) {
+    if ((error.StatusCode = StatusCodes.NOT_FOUND)) {
+      throw new AppError(
+        "The Airplane you requested is not found",
+        error.StatusCode
+      );
+    }
+  }
+}
+
 module.exports = {
   createAirplane,
   getAirplanes,
   getAirplane,
+  destroyAirplane,
+  updateAirplane,
 };

@@ -15,6 +15,19 @@ function validateCreateRequest(req, res, next) {
   next();
 }
 
+function validateUpdateRequest(req, res, next) {
+  if (Object.keys(req.body).length === 0) {
+    ErrorResponse.message = "Something went wrong while updating airplane";
+    ErrorResponse.error = new AppError(
+      ["Request body is empty in the incoming request"],
+      StatusCodes.BAD_REQUEST
+    );
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+  }
+  next();
+}
+
 module.exports = {
   validateCreateRequest,
+  validateUpdateRequest,
 };
