@@ -1,22 +1,22 @@
-'use strict';
+"use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
+  async up(queryInterface, Sequelize) {
+    await queryInterface.addConstraint("Airports", {
+      fields: ["city_id"],
+      type: "foreign key",
+      name: "FK_AC",
+      references: {
+        table: "Cities",
+        field: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "CASCADE",
+    });
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
-  }
+  async down(queryInterface, Sequelize) {
+    await queryInterface.removeConstraint("Airports", "FK_AC");
+  },
 };
