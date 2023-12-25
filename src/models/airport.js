@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.City, {
         foreignKey: "city_id",
-        onUpdate: "cascade",
-        onDelete: "cascade",
+        onDelete: "CASCADE",
       });
     }
   }
