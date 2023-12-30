@@ -28,8 +28,8 @@ async function createAirport(data) {
 
 async function getAirports() {
   try {
-    const airplanes = await airportRepository.findAll();
-    return airplanes;
+    const airports = await airportRepository.findAll();
+    return airports;
   } catch (error) {
     throw new AppError(
       "Cannot fetch data of all the airports",
@@ -38,7 +38,7 @@ async function getAirports() {
   }
 }
 
-async function getAirpport(id) {
+async function getAirport(id) {
   try {
     const airport = await airportRepository.get(id);
     return airport;
@@ -74,7 +74,7 @@ async function updateAirport(id, data) {
 module.exports = {
   createAirport,
   getAirports,
-  getAirpport,
+  getAirport,
   destroyAirport,
   updateAirport,
 };

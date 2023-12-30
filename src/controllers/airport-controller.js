@@ -20,8 +20,8 @@ async function createAirport(req, res) {
 
 async function getAirports(req, res) {
   try {
-    const airplanes = await AirportService.getAirports();
-    SuccessResponse.data = airplanes;
+    const airports = await AirportService.getAirports();
+    SuccessResponse.data = airports;
     return res.status(StatusCodes.OK).json(SuccessResponse);
   } catch (error) {
     ErrorResponse.error = error;
