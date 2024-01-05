@@ -70,7 +70,37 @@ async function getFlights(query) {
   }
 }
 
+async function getFlight(id) {
+  try {
+    const flight = await flightRepository.get(id);
+    return flight;
+  } catch (error) {
+    if ((error.StatusCode = StatusCodes.NOT_FOUND)) {
+      throw new AppError("The requested flight not found", error.StatusCode);
+    }
+  }
+}
+
+async function updateSeats(id, seats, dec) {
+  try {
+    const response = await flightRepository.updateRemainingSeats(
+      id,
+      seats,
+      dec
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+    throw new AppError(
+      "Cannot update the flight data",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+}
+
 module.exports = {
   createFlight,
   getFlights,
+  getFlight,
+  updateSeats,
 };
