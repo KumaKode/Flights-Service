@@ -65,6 +65,7 @@ async function updateCity(id, data) {
     const city = await cityRepository.update(id, data);
     return city;
   } catch (error) {
+    console.log(error);
     if ((error.StatusCode = StatusCodes.NOT_FOUND)) {
       throw new AppError("The requested city not found", error.StatusCode);
     }
