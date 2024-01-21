@@ -44,7 +44,7 @@ npm install
     npx sequelize init
   ```
 - By executing the above command you will get migrations and seeders folder along with a config.json inside the config folder.
-- - Setup tables by seeing the `models` folder and run the following command:
+- Setup tables by seeing the `models` folder and run the following command:
 
 ```
 npx sequelize model:generate --name tableName --attributes attributeName:attributeType,attributeName:attributeType
